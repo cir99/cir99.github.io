@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cir99.github.io/"/>
-  <updated>2018-02-24T02:30:01.379Z</updated>
+  <updated>2018-02-24T04:19:03.244Z</updated>
   <id>https://cir99.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>算法图解第6章笔记</title>
+    <link href="https://cir99.github.io/2018/02/24/%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E7%AC%AC6%E7%AB%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://cir99.github.io/2018/02/24/算法图解第6章笔记/</id>
+    <published>2018-02-24T04:14:17.000Z</published>
+    <updated>2018-02-24T04:19:03.244Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>标签： 笔记 基础算法 python</p><hr><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=19563214&auto=0&height=66"></iframe><a id="more"></a><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>队列是一种先进先出（First In First Out，FIFO）的数据结构，而栈是一种后进先出（Last In First Out，LIFO）的数据结构。<br><img src="http://wx1.sinaimg.cn/mw690/7e99332fgy1forcx26fr3j20gn0asq4u.jpg" alt=""><br>简单图的python表示<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">graph = &#123;&#125;</span><br><span class="line">graph[<span class="string">"you"</span>] = [<span class="string">"alice"</span>, <span class="string">"bob"</span>, <span class="string">"claire"</span>]</span><br><span class="line">graph[<span class="string">"bob"</span>] = [<span class="string">"anuj"</span>, <span class="string">"peggy"</span>]</span><br><span class="line">graph[<span class="string">"alice"</span>] = [<span class="string">"peggy"</span>]</span><br><span class="line">graph[<span class="string">"claire"</span>] = [<span class="string">"thom"</span>, <span class="string">"jonny"</span>]</span><br><span class="line">graph[<span class="string">"anuj"</span>] = []</span><br><span class="line">graph[<span class="string">"peggy"</span>] = []</span><br><span class="line">graph[<span class="string">"thom"</span>] = []</span><br><span class="line">graph[<span class="string">"jonny"</span>] = []</span><br></pre></td></tr></table></figure></p><p>补充：散列表是无序的，因此添加键—值对的顺序无关紧要。</p><p>  图分为有向图和无向图（等价）。</p><h2 id="广度优先搜索算法示例"><a href="#广度优先搜索算法示例" class="headerlink" title="广度优先搜索算法示例"></a>广度优先搜索算法示例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(name)</span>:</span></span><br><span class="line"><span class="comment">#创建一个双端队列</span></span><br><span class="line">  search_queue = deque()</span><br><span class="line"><span class="comment">#将你的邻居都加入到这个搜索队列中</span></span><br><span class="line">  search_queue += graph[<span class="string">"you"</span>]</span><br><span class="line">  searched = []</span><br><span class="line">  <span class="keyword">while</span> search_queue:</span><br><span class="line">    person = search_queue.popleft()</span><br><span class="line">  <span class="comment">#当此人不被标记是才判断</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> person <span class="keyword">in</span> searched:</span><br><span class="line">      <span class="keyword">if</span> person_is_seller(person):</span><br><span class="line">        <span class="keyword">print</span> person + <span class="string">" is a mango seller!"</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">        search_queue += graph[person] s</span><br><span class="line">        earched.append(person)</span><br><span class="line">  <span class="keyword">return</span> false</span><br><span class="line"></span><br><span class="line"><span class="comment">#简单的判断函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">person_is_seller</span><span class="params">(name)</span>:</span>     </span><br><span class="line">  <span class="keyword">return</span> name[<span class="number">-1</span>] == <span class="string">'m'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">search(<span class="string">"you"</span>)</span><br></pre></td></tr></table></figure><p>广度优先搜索的运行时间为 O(人数 + 边数)，这通常写作O(V + E)，其中V为顶点（vertice）数，E为边数。</p><p><img src="http://wx4.sinaimg.cn/mw690/7e99332fgy1foretgp92aj20em09vq4q.jpg" alt="此处输入图片的描述"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;标签： 笔记 基础算法 python&lt;/p&gt;
+&lt;hr&gt;
+&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=19563214&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>个人总结的几种数组去重方法</title>
