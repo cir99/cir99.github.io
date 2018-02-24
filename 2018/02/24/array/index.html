@@ -81,17 +81,17 @@
 
 
 
-<meta name="description" content="标签（空格分隔）： 数组 JavaScript  前言&amp;emsp;&amp;emsp;博客第一篇技术文章（非常基础,因为我太菜了）总结了几种不同方法的数组去重方法。文章不是很全面，还有例如利用对象唯一性去重等方法，可是我觉得太麻烦和有些缺点就没有收集了。">
+<meta name="description" content="标签： 数组 JavaScript  前言&amp;emsp;&amp;emsp;博客第一篇技术文章（非常基础,因为我太菜了）总结了几种不同方法的数组去重方法。文章不是很全面，还有例如利用对象唯一性去重等方法，可是我觉得太麻烦和有些缺点就没有收集了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="个人总结的几种数组去重方法">
 <meta property="og:url" content="https://cir99.github.io/2018/02/24/array/index.html">
 <meta property="og:site_name" content="长路">
-<meta property="og:description" content="标签（空格分隔）： 数组 JavaScript  前言&amp;emsp;&amp;emsp;博客第一篇技术文章（非常基础,因为我太菜了）总结了几种不同方法的数组去重方法。文章不是很全面，还有例如利用对象唯一性去重等方法，可是我觉得太麻烦和有些缺点就没有收集了。">
+<meta property="og:description" content="标签： 数组 JavaScript  前言&amp;emsp;&amp;emsp;博客第一篇技术文章（非常基础,因为我太菜了）总结了几种不同方法的数组去重方法。文章不是很全面，还有例如利用对象唯一性去重等方法，可是我觉得太麻烦和有些缺点就没有收集了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-24T02:21:56.401Z">
+<meta property="og:updated_time" content="2018-02-24T02:30:01.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="个人总结的几种数组去重方法">
-<meta name="twitter:description" content="标签（空格分隔）： 数组 JavaScript  前言&amp;emsp;&amp;emsp;博客第一篇技术文章（非常基础,因为我太菜了）总结了几种不同方法的数组去重方法。文章不是很全面，还有例如利用对象唯一性去重等方法，可是我觉得太麻烦和有些缺点就没有收集了。">
+<meta name="twitter:description" content="标签： 数组 JavaScript  前言&amp;emsp;&amp;emsp;博客第一篇技术文章（非常基础,因为我太菜了）总结了几种不同方法的数组去重方法。文章不是很全面，还有例如利用对象唯一性去重等方法，可是我觉得太麻烦和有些缺点就没有收集了。">
 
 
 
@@ -313,10 +313,10 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>标签（空格分隔）： 数组 JavaScript</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>标签： 数组 JavaScript</p>
 <hr>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;博客第一篇技术文章（非常基础,因为我太菜了）总结了几种不同方法的数组去重方法。文章不是很全面，还有例如利用对象唯一性去重等方法，可是我觉得太麻烦和有些缺点就没有收集了。</p>
-<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=461074907&auto=0&height=66"></iframe><br><a id="more"></a> </p>
+<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=461074907&auto=0&height=66"></iframe><br><a id="more"></a></p>
 <h2 id="双循环"><a href="#双循环" class="headerlink" title="双循环"></a>双循环</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> result = [];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="comment">//对于原数组的每个元素遍历</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = i + <span class="number">1</span>; j &lt; arr.length; j++) &#123;</span><br><span class="line">          <span class="comment">//对选定元素跟后面的各个元素遍历比较</span></span><br><span class="line">          <span class="keyword">if</span> (arr[i] === arr[j]) &#123;</span><br><span class="line">            <span class="comment">// 遇到重复元素就跳过</span></span><br><span class="line">            j = ++i;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将不重复的元素添加到result数组</span></span><br><span class="line">        result.push(arr[i]);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>说明：这就是基本的双循环去重。注释已经较好的说明原理，注意的就是j=++i;相当于j = j+1; i = i+1;。</p>
 <h2 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = [];</span><br><span class="line">    <span class="comment">//先将原数组排序，再比较</span></span><br><span class="line">    arr.sort();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[i] != arr[i + <span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="comment">//元素跟后一个元素比较，不同则添加</span></span><br><span class="line">        result.push(arr[i]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
