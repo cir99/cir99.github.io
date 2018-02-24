@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cir99.github.io/"/>
-  <updated>2018-02-24T04:19:03.244Z</updated>
+  <updated>2018-02-24T08:45:17.524Z</updated>
   <id>https://cir99.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>算法图解第7章笔记</title>
+    <link href="https://cir99.github.io/2018/02/24/%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E7%AC%AC7%E7%AB%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://cir99.github.io/2018/02/24/算法图解第7章笔记/</id>
+    <published>2018-02-24T08:42:50.000Z</published>
+    <updated>2018-02-24T08:45:17.524Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>标签： 笔记  简单算法 python</p><hr><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=18861490&auto=0&height=66"></iframe><h2 id="狄克斯特拉算法"><a href="#狄克斯特拉算法" class="headerlink" title="狄克斯特拉算法"></a>狄克斯特拉算法</h2><a id="more"></a><p><img src="http://wx2.sinaimg.cn/mw690/7e99332fgy1forfh01tuaj20qo05m75w.jpg" alt=""></p><p>  要计算非加权图中的最短路径，可使用广度优先搜索。要计算 加权图中的最短路径，可使用狄克斯特拉算法。<br>  <img src="http://wx4.sinaimg.cn/mw690/7e99332fgy1forfkfc3hyj20i003nglz.jpg" alt=""></p><p>  实例分析：<br>  <img src="http://wx1.sinaimg.cn/mw690/7e99332fgy1forfvybf47j20i609wq5l.jpg" alt=""></p><p>  在这张图上，你怎样用最少的钱将乐谱交换到钢琴？这时就要使用狄克斯特拉算法。</p><ol><li>找出最便宜的节点，即可在最短时间内前往的节点。</li><li>对于该节点的邻居，检查是否有前往它们的更短路径，如果有，就更新其开销。</li><li>重复这个过程，直到对图中的每个节点都这样做了。</li><li>计算最终路径。</li></ol><p>算法执行后更新的开销如下表：<br><img src="http://wx4.sinaimg.cn/mw690/7e99332fgy1forg3ded18j20j3066gnw.jpg" alt=""></p><p>  从此，可以看出最低花销是35，如何将交换路线确定？只需从钢琴出发，不断求父节点直到乐谱为止就可以确定了。<br>  补充：此算法不适用于负加权的图，若有负加权，应采用贝尔曼-福得算法（Bellman-Ford algorithm）。<em>以后我会补充说明</em></p><h2 id="代码实现狄克斯特拉算法"><a href="#代码实现狄克斯特拉算法" class="headerlink" title="代码实现狄克斯特拉算法"></a>代码实现狄克斯特拉算法</h2><p><img src="http://wx2.sinaimg.cn/mw690/7e99332fgy1fork8muaauj209d04x0t3.jpg" alt=""></p><p>  以上图为例，进行实现。<br>  准备：<br>  要构建两个散列表（costs&amp;parents)和一个图（graph)。</p><ul><li><p>costs散列表<br>用来存储每个节点的开销，算法代码运行后会更新起点到该节点的<strong>最低</strong>花销。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#假设到达终点的花销为无穷大</span></span><br><span class="line">infinity=float(<span class="string">"inf"</span>)</span><br><span class="line"><span class="comment">#使用python的字典</span></span><br><span class="line">costs=&#123;&#125;</span><br><span class="line">costs[<span class="string">"a"</span>]=<span class="number">6</span></span><br><span class="line">costs[<span class="string">"b"</span>]=<span class="number">2</span></span><br><span class="line">cost[<span class="string">"fin"</span>]=infinity</span><br></pre></td></tr></table></figure></li><li><p>parents散列表<br>存储各节点的父节点的散列表，算法代码运行后会更新起点到终点花销<strong>最低</strong>的路线（从终点不停找父节点直至起点）。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">parents=&#123;&#125;</span><br><span class="line">parents[<span class="string">"a"</span>]=<span class="string">"start"</span></span><br><span class="line">parents[<span class="string">"b"</span>]=<span class="string">"start"</span></span><br><span class="line"><span class="comment">#将终点节点的父节点设为空</span></span><br><span class="line">parents[<span class="string">"fin"</span>]=<span class="keyword">None</span></span><br></pre></td></tr></table></figure></li><li><p>graph图</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">graph=&#123;&#125;</span><br><span class="line">graph[<span class="string">"start"</span>]=&#123;&#125;</span><br><span class="line">graph[<span class="string">"start"</span>][<span class="string">"a"</span>]=<span class="number">6</span></span><br><span class="line">graph[<span class="string">"start"</span>][<span class="string">"b"</span>]=<span class="number">2</span></span><br><span class="line">graph[<span class="string">"a"</span>] = &#123;&#125;</span><br><span class="line">graph[<span class="string">"a"</span>][<span class="string">"fin"</span>] = <span class="number">1</span></span><br><span class="line">graph[<span class="string">"b"</span>] = &#123;&#125;</span><br><span class="line">graph[<span class="string">"b"</span>][<span class="string">"a"</span>] = <span class="number">3</span></span><br><span class="line">graph[<span class="string">"b"</span>][<span class="string">"fin"</span>] = <span class="number">5</span></span><br><span class="line">graph[<span class="string">"fin"</span>] = &#123;&#125;</span><br></pre></td></tr></table></figure><p>实现：<br><img src="http://wx4.sinaimg.cn/mw690/7e99332fgy1forlrazofyj20uq0b5n29.jpg" alt=""></p></li></ul><p><img src="http://wx4.sinaimg.cn/mw690/7e99332fgy1forlwq95zzj20qu06ljt2.jpg" alt=""></p><p>  详细部分和思路请浏览第7章后半部分。</p><p>  小结：</p><ul><li>广度优先搜索用于在非加权图中查找最短路径。</li><li>狄克斯特拉算法用于在加权图中查找最短路径</li><li>仅当权重为正时狄克斯特拉算法才管用。</li><li>如果图中包含负权边，请使用贝尔曼-福德算法。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;标签： 笔记  简单算法 python&lt;/p&gt;
+&lt;hr&gt;
+&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=18861490&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;
+
+&lt;h2 id=&quot;狄克斯特拉算法&quot;&gt;&lt;a href=&quot;#狄克斯特拉算法&quot; class=&quot;headerlink&quot; title=&quot;狄克斯特拉算法&quot;&gt;&lt;/a&gt;狄克斯特拉算法&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>算法图解第6章笔记</title>
