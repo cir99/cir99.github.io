@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="长路">
 <meta property="og:description" content="标签： vue 笔记       vue特点 数据和DOM建立了关联，所有东西都是响应式的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-25T15:44:32.455Z">
+<meta property="og:updated_time" content="2018-02-25T15:47:32.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue官方中文文档学习笔记之一">
 <meta name="twitter:description" content="标签： vue 笔记       vue特点 数据和DOM建立了关联，所有东西都是响应式的。">
@@ -324,6 +324,7 @@
 <li>数据和DOM建立了关联，所有东西都是<strong>响应式</strong>的。<a id="more"></a>
 </li>
 </ul>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span> v-text=<span class="string">"message"</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 还可以有下面的操作--&gt;</span><br><span class="line">&lt;div id=<span class="string">'app0'</span>&gt;</span><br><span class="line">   &lt;h1&gt;&#123;&#123; message &#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">   &lt;h1&gt;&#123;&#123; message.concat('!!!') &#125;&#125;&lt;/</span>h1&gt;</span><br><span class="line">   &lt;h1&gt;&#123;&#123; message? <span class="string">'has message'</span> : <span class="string">'no message'</span> &#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">   &lt;!-- 下面这两个语句报错--&gt;</span></span><br><span class="line"><span class="regexp">   &lt;h1&gt;&#123;&#123; var message = 'message' &#125;&#125;&lt;/</span>h1&gt;</span><br><span class="line">   &lt;h1&gt;&#123;&#123; <span class="keyword">if</span>(message)&#123;<span class="keyword">return</span> info&#125; &#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure>
 
       
     </div>
