@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cir99.github.io/"/>
-  <updated>2018-02-24T16:48:23.724Z</updated>
+  <updated>2018-02-25T01:52:30.796Z</updated>
   <id>https://cir99.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>算法图解第9章笔记</title>
+    <link href="https://cir99.github.io/2018/02/25/%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E7%AC%AC9%E7%AB%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://cir99.github.io/2018/02/25/算法图解第9章笔记/</id>
+    <published>2018-02-25T01:25:19.000Z</published>
+    <updated>2018-02-25T01:52:30.796Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=139707&auto=0&height=66"></iframe><p>标签（空格分隔）： 简单算法 笔记 python</p><hr><h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>动态规划原理是先解决子问题，再逐步解决大问题。<br>简单例子（背包问题）：你是小偷，现有一个容量为4磅的背包。商店有三种商品为：$3000的音响重为4磅；$2000的笔记本电脑重为3磅，$1500的吉他重为1磅。你怎样偷窃才能获利最多？</p><a id="more"></a><p>最简单的办法：遍历所有可能组合，找到最值钱的组合。可惜存在一个巨大的缺点，算法运行时间为O(2^n),慢如蜗牛。<br>合理的方法（动态归划）：原理是先解决小背包（子背包）问题，再逐步解决原来的问题。通过迭代当前容量最大价值解决问题，如下图：</p><p><img src="http://wx1.sinaimg.cn/mw690/7e99332fgy1fosdv3rnqyj20dv094ac2.jpg" alt=""></p><p>  局限：但仅当每个子问题都是离散的，即不依赖于其他子问题时，动态规划才管用。举例，有限时间在英国各地游览和中途去法国各景点游览。</p><p> 启示：</p><ul><li>动态规划可帮助你在给定约束条件下找到最优解。在背包问题中，你必 须在背包容量给定的情况下，偷到价值最高的商品。</li><li><p>在问题可分解为彼此独立且离散的子问题时，就可使用动态规划来解决。</p></li><li><p>每种动态规划解决方案都涉及网格。</p></li><li><p>单元格中的值通常就是你要优化的值。在前面的背包问题中，单元格的值为商品的价值。</p></li><li><p>每个单元格都是一个子问题，因此你应考虑如何将问题分成子问题，这有助于你找出网格的坐标轴。</p></li></ul><h2 id="最长公共子串"><a href="#最长公共子串" class="headerlink" title="最长公共子串"></a>最长公共子串</h2><p>当你不小心hish，输入法怎样会提供相近的单词fish作为参考，而不是vista？这是就要计算最长公共子串(是网格中最大的数字)，如下图：<br><img src="http://wx4.sinaimg.cn/mw690/7e99332fgy1fosetnqxzwj20gr0c9q5e.jpg" width="350" height="200"><br><img src="http://wx3.sinaimg.cn/mw690/7e99332fgy1fosetv348fj20az09wjsz.jpg" width="350" height="200"><br>由此，输入法判断的是fish作为参考。<br><strong>具体代码实现，以后再补充。</strong></p><h2 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h2><p>假设你不小心输入了fosh，原本想输入的是fish还是fort呢?<br>可以看出，两个单词和fosh的最长公共子串都为2，这是就要判断最长公共子序列，计算公式如下图：<br><img src="http://wx2.sinaimg.cn/mw690/7e99332fgy1fosfbrszfmj20hz0apmzj.jpg" width="450" height="300"><br><img src="http://wx4.sinaimg.cn/mw690/7e99332fgy1fosfc9lixnj20hj07l0uv.jpg" width="450" height="300"><br>所以输入法判断想输入的是fish。<br><strong>具体代码，以后补充。</strong></p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><img src="http://wx1.sinaimg.cn/mw690/7e99332fgy1fosfhdetdsj20ng08itbi.jpg" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=139707&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;标签（空格分隔）： 简单算法 笔记 python&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;动态规划&quot;&gt;&lt;a href=&quot;#动态规划&quot; class=&quot;headerlink&quot; title=&quot;动态规划&quot;&gt;&lt;/a&gt;动态规划&lt;/h2&gt;&lt;p&gt;动态规划原理是先解决子问题，再逐步解决大问题。&lt;br&gt;简单例子（背包问题）：你是小偷，现有一个容量为4磅的背包。商店有三种商品为：$3000的音响重为4磅；$2000的笔记本电脑重为3磅，$1500的吉他重为1磅。你怎样偷窃才能获利最多？&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>算法图解第8章笔记</title>
