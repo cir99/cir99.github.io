@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="长路">
 <meta property="og:description" content="标签： web JavaScript python  https://www.zhihu.com/question/41493194这里说明一下，这题我早就见过很相似的题目，不用循环，创建一个长度为500，每个元素都为m的数组。当时，我就确定了两个思路，一个是使用递归（至今都不会），一个是使用map。做法：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-06T13:51:49.762Z">
+<meta property="og:updated_time" content="2018-03-06T16:04:17.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从一道不能用循环的问题开始">
 <meta name="twitter:description" content="标签： web JavaScript python  https://www.zhihu.com/question/41493194这里说明一下，这题我早就见过很相似的题目，不用循环，创建一个长度为500，每个元素都为m的数组。当时，我就确定了两个思路，一个是使用递归（至今都不会），一个是使用map。做法：">
@@ -335,7 +335,7 @@
 <p>灵机一动，这不就是我积压已久问题的答案吗？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(&#123;<span class="attr">length</span>: <span class="number">500</span>&#125;, (v) =&gt; <span class="string">"m"</span>);</span><br></pre></td></tr></table></figure></p>
 <p>后来进行搜索到了知乎（逼乎），看到上面的链接，才知道上面是神仙打架。比较相似和简洁的答案<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(<span class="built_in">Array</span>(<span class="number">100</span>).keys())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> or</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> [...Array(<span class="number">100</span>).keys()]</span><br></pre></td></tr></table></figure></p>
 <p>递归写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reduce</span>(<span class="params">prev, curr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (curr &gt;= <span class="number">100</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> prev</span><br><span class="line">  &#125;</span><br><span class="line">  prev.push(curr)</span><br><span class="line">  <span class="keyword">return</span> reduce(prev, curr + <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = reduce([], <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure></p>
-<p>也有写一大串字符串，再用.split(‘’)组成数组（密集数组），再替换的（不推荐不简洁）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>(<span class="number">100</span>).fill(<span class="number">0</span>).map(<span class="function">(<span class="params">item,index</span>)=&gt;</span>index);</span><br></pre></td></tr></table></figure></p>
+<p>也有写一大串字符串，再用.split(‘’)组成数组（密集数组），再替换的（不推荐不简洁）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'1'</span>.repeat(<span class="number">100</span>).split(<span class="string">''</span>).map(<span class="function">(<span class="params">e,i</span>)=&gt;</span>e=i);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">100</span>).fill(<span class="number">0</span>).map(<span class="function">(<span class="params">item,index</span>)=&gt;</span>index);</span><br></pre></td></tr></table></figure></p>
 <p>很搞事的idea<br>1&lt;&lt;24,也就是1向左移24位,也就是2的24次方,一共有25位，每个数组匹配4个1111，这样就有长度为100的字符串。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>&lt;&lt;<span class="number">24</span>).toString(<span class="number">2</span>).replace(<span class="regexp">/\d/g</span>,<span class="string">'1111'</span>).split(<span class="string">''</span>).map(<span class="function">(<span class="params">e,i</span>)=&gt;</span>e=i);</span><br></pre></td></tr></table></figure></p>
 <p>贴个python的来捣乱<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> range(<span class="number">1</span>,<span class="number">101</span>)</span><br></pre></td></tr></table></figure></p>
 <p>还有很多方法，我还没有去研究，不过现在还是去看GitHub吧，远离逼乎！</p>
@@ -372,6 +372,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/09/记录一道算法题的答案/" rel="prev" title="记录一道算法题的答案">
+                记录一道算法题的答案 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -443,7 +447,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
