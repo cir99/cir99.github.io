@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://cir99.github.io/"/>
-  <updated>2018-03-09T08:02:17.447Z</updated>
+  <updated>2018-03-11T16:15:21.196Z</updated>
   <id>https://cir99.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记自己一个大乌龙</title>
+    <link href="https://cir99.github.io/2018/03/11/%E8%AE%B0%E8%87%AA%E5%B7%B1%E4%B8%80%E4%B8%AA%E5%A4%A7%E4%B9%8C%E9%BE%99/"/>
+    <id>https://cir99.github.io/2018/03/11/记自己一个大乌龙/</id>
+    <published>2018-03-11T15:57:28.000Z</published>
+    <updated>2018-03-11T16:15:21.196Z</updated>
+    
+    <content type="html"><![CDATA[<script src="/assets/js/APlayer.min.js"> </script><p>标签： JavaScript</p><hr><p>本人折腾了一个很简单的算法，但一直出错。有点没头绪，突然发现自己可能发生了一个大乌龙。<strong>JavaScript的数组索引不能取负数。</strong>因为，自己先有接触过python的语法。python的数组索引可以取负数，例如arr[-1]就是指取数组的最后一位，也就是倒数第一位。直至今天：<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="comment">//underfined</span></span><br><span class="line"><span class="built_in">console</span>.log(arr[<span class="number">-1</span>]);</span><br></pre></td></tr></table></figure></p><p>才发现自己闹出个大笑话。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;标签： JavaScript&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;本人折腾了一个很简单的算法，但一直出错。有点没头绪，突然发现自己可能发生了一个大乌龙。&lt;strong&gt;JavaScript的数组索引不能取负数。&lt;/strong&gt;因为，自己先有接触过python的语法。python的数组索引可以取负数，例如arr[-1]就是指取数组的最后一位，也就是倒数第一位。直至今天：&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>记录字符串出现最多次数</title>
